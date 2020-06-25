@@ -1,7 +1,7 @@
 import argparse
 import pandas as pd
 import joblib
-from widgets import create_table, create_parcoords_fig, create_filter_sidebar
+from kahmpehr.widgets import create_table, create_parcoords_fig, create_filter_sidebar
 from pathlib import Path
 
 import dash
@@ -10,7 +10,15 @@ import dash_core_components as dcc
 from dash.dependencies import Input, Output
 from dash_table.Format import Format
 
-def main(args):
+def main():
+
+    argparser = argparse.ArgumentParser(description='Compare ML experiments')
+    argparser.add_argument('--logdir', type=str,
+                           help='Path to experiments logs')
+    argparser.add_argument('--port', type=int,
+                           help='Port number', default=6969)
+    args = vars(argparser.parse_args())
+
     df_data = pd.read_csv(Path(args['logdir'],'results.csv'))
     columns_metadata = joblib.load(Path(args['logdir'],'columns_metadata'))
     
@@ -77,17 +85,8 @@ def main(args):
         
         return create_parcoords_fig(data=filtered_df,columns=col_names)
 
-    return app
+    app.run_server(port = args['port'], debug=True)
 
 if __name__ == '__main__':
-    argparser = argparse.ArgumentParser(description='Compare ML experiments')
-
-    argparser.add_argument('--logdir', type=str,
-                           help='Path to experiments logs')
-    argparser.add_argument('--port', type=int,
-                           help='Port number')
-
-    args = vars(argparser.parse_args())
-
-    app = main(args)
-    app.run_server(port = args['port'], debug=True)
+    main()
+    
