@@ -17,7 +17,7 @@ kahmpehr --logdir <directory with data> --port <port>
 * **columns_metadata** is a dictionary, saved via joblib, which contains information about columns structure. For example, as the csv may potentially contain many columns, it is nice to have them organized like:
 
 ```
-{'metadata': [n_layers, dataset, optimizer, batch_size, ...],
+{'metadata': [n_layers, optimizer, batch_size, ...],
 'metrics': [accuracy, precision, recall, f1score,...]}
 ```
 
