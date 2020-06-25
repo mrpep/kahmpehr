@@ -1,15 +1,15 @@
 # kahmpehr
 Compare multiple ML experiments using Dash
 
-Installation
+#### Installation
 ```
 pip install .
 ```
-Start server
+#### Start server
 ```
 kahmpehr --logdir <directory with data> --port <port>
 ```
-Data format
+#### Data format
 
 2 files are needed in logdir: 
 
