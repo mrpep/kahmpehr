@@ -24,6 +24,7 @@ kahmpehr --logdir <directory with data> --port <port>
 Then, the filter widget will be organized in the same way.
 
 #### Screenshot
+![alt text](kahmpehr-screenshot.png "Screenshot")
 
 
 
