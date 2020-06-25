@@ -2,5 +2,9 @@
 Compare multiple ML experiments using Dash
 
 ```
-python kahmpehr --logdir <directory with data> --port <port>
+pip install .
+```
+
+```
+kahmpehr --logdir <directory with data> --port <port>
 ```
