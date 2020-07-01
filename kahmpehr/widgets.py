@@ -57,3 +57,21 @@ def create_filter_sidebar(columns_metadata=None):
     filter_sidebar = html.Div(filter_divs,className='w3-sidebar w3-bar-block',style={'width':'25%'})
 
     return filter_sidebar, all_checklists
+
+def create_summarizer(id, groups, operations):
+    group_by_dropdown = dcc.Dropdown(
+    id = '{}_group'.format(id),
+    options=[{'label': group, 'value': group} for group in groups],
+    value=[],
+    multi=True,
+    placeholder='Group by')
+
+    operation_dropdown = dcc.Dropdown(
+        id = '{}_operation'.format(id),
+        options=[{'label': oper, 'value': oper} for oper in operations.keys()],
+        value=[],
+        placeholder='Apply function')
+
+    div_groupby = html.Div(group_by_dropdown,style={'width':'70%','display':'inline-block'})
+    div_operation = html.Div(operation_dropdown,style={'width':'30%','display':'inline-block'})
+    return html.Div([div_groupby,div_operation],className='w3-row')
